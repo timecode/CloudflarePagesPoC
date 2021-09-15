@@ -1,6 +1,7 @@
 package conf
 
 const (
+	EnvHugoEnvironment   = "HUGO_ENVIRONMENT"
 	EnvCfAccountID       = "CF_ACCOUNT_ID"
 	EnvCfZoneID          = "CF_ZONE_ID"
 	EnvCfWorkersAPIToken = "CF_WORKERS_API_TOKEN"
@@ -23,10 +24,11 @@ const (
 )
 
 var (
-	CfAPIToken  string
-	CfAccountID string
-	CfZoneID    string
-	Prod        = false
+	CfAPIToken      string
+	CfAccountID     string
+	CfZoneID        string
+	HugoEnvironment string
+	Prod            = false
 )
 
 func Config() string {

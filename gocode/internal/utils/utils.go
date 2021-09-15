@@ -6,15 +6,16 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/timecode/CloudflarePagesPoC/gocode/internal/conf"
 )
 
-// CheckProdArg ...
-func CheckProdArg(in []string) {
-	// Add / Update actual worker
-	args := os.Args[1:]
-	if len(args) > 0 && args[0] == "prod" {
+// LoadProdStatus ...
+func LoadProdStatus() {
+	env := conf.EnvHugoEnvironment
+	conf.HugoEnvironment = os.Getenv(env)
+	if strings.ToLower(conf.HugoEnvironment) == "production" {
 		conf.Prod = true
 	}
 }

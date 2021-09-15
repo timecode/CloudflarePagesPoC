@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/timecode/CloudflarePagesPoC/gocode/internal/conf"
 	"github.com/timecode/CloudflarePagesPoC/gocode/internal/utils"
@@ -24,13 +23,12 @@ func main() {
 	utils.LoadAPIToken()
 	utils.LoadAccountID()
 	utils.LoadZoneID()
+	utils.LoadProdStatus()
 
 	// Add / Update actual worker
 
-	utils.CheckProdArg(os.Args[1:])
-	if !conf.Prod {
-		workerStage = "dev"
-	} else {
+	workerStage = "dev"
+	if conf.Prod {
 		workerStage = "prod"
 	}
 
