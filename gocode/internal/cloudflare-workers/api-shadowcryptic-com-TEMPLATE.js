@@ -15,18 +15,18 @@ async function handleRequest(event) {
   const headers = Object.fromEntries([...request.headers]);
   const origin = headers["origin"];
 
-  var allowed_origins = [
-    "https://shadowcryptic.com",
-    "https://poc.shadowcryptic.com",
-    "https://dev.shadowcryptic.com",
-    "http://local.shadowcryptic.com:1313",
-  ];
+  // var allowed_origins = [
+  //   "https://shadowcryptic.com",
+  //   "https://poc.shadowcryptic.com",
+  //   "https://dev.shadowcryptic.com",
+  //   "http://local.shadowcryptic.com:1313",
+  // ];
 
-  if (allowed_origins.includes(origin)) {
+  // if (allowed_origins.includes(origin)) {
     return handleSiteRequest(event, origin);
-  }
+  // }
 
-  return new Response("Not Found", { status: 404 });
+  // return new Response("Not Found", { status: 404 });
 }
 
 function handleSiteRequest(event, origin) {
