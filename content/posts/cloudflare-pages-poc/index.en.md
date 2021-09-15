@@ -176,6 +176,18 @@ This PoC is WIP, but here's what I have so far...
 
 5.  Marvel at the deployed site
 
-    The deployed site gets a custom TLS certificate provided by Cloudflare 😎. (No wildcards!)
+    - The deployed site gets a custom TLS certificate provided by Cloudflare 😎. (No wildcards!)
+    - Deployments can be rolled back (to any version) at any time.
+    - Access to Preview deployments can be control with Cloudflare Access.
+    - Web Analytics can be enabled at Cloudflare.
+    - Check your site's score on Google's [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)... for example, [here's this site](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fpoc.shadowcryptic.com%2F&tab=desktop)
 
-    Check your site's score on Google's [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)... for example, [here's this site](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fpoc.shadowcryptic.com%2F&tab=desktop)
+## Preview Site
+
+Preview branches are classed as "all non-Production branches". Try one out...
+
+1.  Create a branch... `git checkout -b my-preview-version-1`
+2.  Make you changes
+3.  Commit your changes (repeat the previous step for more changes, or continue)
+4.  Push to the repo `git push origin`
+5.  Watch Cloudflare Pages pick up the branch and deploy a preview!
