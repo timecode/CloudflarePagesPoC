@@ -55,10 +55,13 @@ This PoC is WIP, but here's what I have so far...
 
     Add the following, for example:
 
-    | Variable name  | Value    |
-    | -------------- | -------- |
-    | `GO_VERSION`   | `1.17`   |
-    | `HUGO_VERSION` | `0.88.1` |
+    | Variable name      | Value        |
+    | ------------------ | ------------ |
+    | `GO_VERSION`       | `1.17`       |
+    | `HUGO_VERSION`     | `0.88.1`     |
+    | `HUGO_ENVIRONMENT` | `production` |
+
+    **Note**: `HUGO_ENVIRONMENT` is used by Hugo as a selector for its configuration. This repo's config directory, for example, has two such options 'production' and 'development'
 
 4.  Deploy
 
@@ -178,6 +181,7 @@ This PoC is WIP, but here's what I have so far...
 
     - The deployed site gets a custom TLS certificate provided by Cloudflare 😎. (No wildcards!)
     - Deployments can be rolled back (to any version) at any time.
+    - Each deployment has its own unique subdomain, such as `https://331e1fb6.cloudflarepagespoc.pages.dev/` for example.
     - Access to Preview deployments can be control with Cloudflare Access.
     - Web Analytics can be enabled at Cloudflare.
     - Check your site's score on Google's [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)... for example, [here's this site](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fpoc.shadowcryptic.com%2F&tab=desktop)
@@ -190,4 +194,4 @@ Preview branches are classed as "all non-Production branches". Try one out...
 2.  Make you changes
 3.  Commit your changes (repeat the previous step for more changes, or continue)
 4.  Push to the repo `git push origin`
-5.  Watch Cloudflare Pages pick up the branch and deploy a preview!
+5.  Watch Cloudflare Pages pick up the branch and deploy a preview! The deployment gets its own subdomain, such as `https://df58e22a.cloudflarepagespoc.pages.dev/` for example.
