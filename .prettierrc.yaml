@@ -1,0 +1,26 @@
+---
+packageManager: yarn
+quoteProps: consistent
+overrides:
+  - files:
+      - "*.html"
+    options:
+      tabWidth: 2
+      parser: "go-template"
+      # if ^ that doesn't work just use...
+      # embeddedLanguageFormatting: off
+  - files:
+      - "*.md"
+    options:
+      tabWidth: 4
+      embeddedLanguageFormatting: "off"
+      # ^ appears to not use override rules for language formatting :-(
+  - files:
+      - "*.yaml"
+    options:
+      tabWidth: 2
+  - files:
+      - "*.json"
+      - "*.js"
+    options:
+      tabWidth: 2
