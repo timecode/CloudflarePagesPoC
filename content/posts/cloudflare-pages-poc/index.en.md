@@ -194,4 +194,4 @@ Preview branches are classed as "all non-Production branches". Try one out...
 2.  Make you changes
 3.  Commit your changes (repeat the previous step for more changes, or continue)
 4.  Push to the repo `git push origin`
-5.  Watch Cloudflare Pages pick up the branch and deploy a preview! The deployment gets its own subdomain, such as `https://df58e22a.cloudflarepagespoc.pages.dev/` for example.
+5.  Watch Cloudflare Pages pick up the branch and deploy a preview! The deployment gets its own subdomain, such as `https://df58e22a.cloudflarepagespoc.pages.dev/` for example, however it also gets a handy alias containing the branch name, such as `https://my-preview-version-1.cloudflarepagespoc.pages.dev`
