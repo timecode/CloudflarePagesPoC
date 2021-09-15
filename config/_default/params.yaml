@@ -1,0 +1,190 @@
+version: 0.2.X
+defaultTheme: auto
+gitRepo: 'https://github.com/sunt-programator/CodeIT'
+# fingerprint: sha256
+dateFormat: '2006-01-02'
+images:
+  - /logo.png
+header:
+  desktopMode: fixed
+  mobileMode: auto
+  title:
+    logo: ''
+    name: ShadowCryptic
+    pre: <i class='fas fa-laptop-code fa-fw'></i>
+    post: ''
+    typeit: false
+footer:
+  enable: true
+  custom: ''
+  hugo: false
+  copyright: true
+  author: true
+  since: 2019
+  icp: ''
+section:
+  paginate: 20
+  dateFormat: 01-02
+  rss: 10
+list:
+  paginate: 20
+  dateFormat: 01-02
+  rss: 10
+page:
+  hiddenFromHomePage: false
+  hiddenFromSearch: false
+  twemoji: false
+  lightgallery: false
+  ruby: true
+  fraction: true
+  fontawesome: true
+  linkToMarkdown: true
+  rssFullText: false
+  toc:
+    enable: true
+    keepStatic: false
+    auto: true
+  code:
+    copy: true
+    maxShownLines: 10
+  math:
+    enable: false
+    blockLeftDelimiter: ''
+    blockRightDelimiter: ''
+    inlineLeftDelimiter: ''
+    inlineRightDelimiter: ''
+    copyTex: true
+    mhchem: true
+  mapbox:
+    accessToken: >-
+      pk.eyJ1IjoiZGlsbG9uenEiLCJhIjoiY2s2czd2M2x3MDA0NjNmcGxmcjVrZmc2cyJ9.aSjv2BNuZUfARvxRYjSVZQ
+    lightStyle: 'mapbox://styles/mapbox/light-v10?optimize=true'
+    darkStyle: 'mapbox://styles/mapbox/dark-v10?optimize=true'
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
+  share:
+    enable: true
+    Twitter: true
+    Facebook: true
+    Linkedin: false
+    Whatsapp: false
+    Pinterest: false
+    Tumblr: false
+    HackerNews: true
+    Reddit: false
+    VK: false
+    Buffer: false
+    Xing: false
+    Line: true
+    Instapaper: false
+    Pocket: false
+    Digg: false
+    Stumbleupon: false
+    Flipboard: false
+    Weibo: true
+    Renren: false
+    Myspace: false
+    Blogger: false
+    Baidu: false
+    Odnoklassniki: false
+    Evernote: false
+    Skype: false
+    Trello: false
+    Mix: false
+    Telegram: false
+  comment:
+    enable: true
+    disqus:
+      enable: false
+      shortname: ''
+    gitalk:
+      enable: false
+      owner: ''
+      repo: ''
+      clientId: ''
+      clientSecret: ''
+    valine:
+      enable: false
+      appId: QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI
+      appKey: WBmoGyJtbqUswvfLh6L8iEBr
+      placeholder: ''
+      avatar: mp
+      meta: ''
+      pageSize: 10
+      lang: ''
+      visitor: true
+      recordIP: true
+      highlight: true
+      enableQQ: false
+      serverURLs: 'https://leancloud.hugoCodeIT.com'
+      emoji: ''
+    facebook:
+      enable: false
+      width: 100%
+      numPosts: 10
+      appId: ''
+      languageCode: ''
+    telegram:
+      enable: false
+      siteID: ''
+      limit: 5
+      height: ''
+      color: ''
+      colorful: true
+      dislikes: false
+      outlined: false
+    commento:
+      enable: false
+    utterances:
+      enable: false
+      repo: ''
+      issueTerm: pathname
+      label: ''
+      lightTheme: github-light
+      darkTheme: github-dark
+  library:
+    css: {}
+    js: {}
+  seo:
+    images: []
+    publisher:
+      name: xxxx
+      logoUrl: /images/avatar.png
+typeit:
+  speed: 100
+  cursorSpeed: 1000
+  cursorChar: '|'
+  duration: -1
+verification:
+  google: ''
+  bing: ''
+  yandex: ''
+  pinterest: ''
+  baidu: ''
+seo:
+  image: /images/Apple-Devices-Preview.png
+  thumbnailUrl: /images/screenshot.png
+analytics:
+  enable: false
+  google:
+    id: ''
+    anonymizeIP: true
+  fathom:
+    id: ''
+    server: ''
+  plausible:
+    domain: ''
+cookieconsent:
+  enable: false
+  content:
+    message: ''
+    dismiss: ''
+    link: ''
+cdn:
+  data: jsdelivr.yml
+compatibility:
+  polyfill: false
+  objectFit: false
+
