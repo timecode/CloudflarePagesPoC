@@ -1,1 +1,3 @@
 baseURL: https://dev.shadowcryptic.com/
+
+disableHugoGeneratorInject: false

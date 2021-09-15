@@ -1,6 +1,6 @@
 version: 0.2.X
 defaultTheme: auto
-gitRepo: 'https://github.com/sunt-programator/CodeIT'
+gitRepo: 'https://github.com/timecode/CloudflarePagesPoC'
 # fingerprint: sha256
 dateFormat: '2006-01-02'
 images:
