@@ -13,7 +13,7 @@ This repo contains the source code for a (Hugo generated) JAMstack. Documentatio
 
 For general Hugo related documentation see the [Hugo docs](https://gohugo.io/documentation/).
 
-As an exercise in "Eating your own dog food", this guide will be published using the resulting site too! See [Cloudflare Pages PoC](/content/posts/cloudflare-pages-poc/index.en.md))
+As an exercise in "Eating your own dog food", this guide will be published using the resulting site too! See [Cloudflare Pages PoC](./content/posts/cloudflare-pages-poc/index.en.md))
 
 ## Note
 
