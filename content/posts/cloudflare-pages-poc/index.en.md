@@ -227,7 +227,7 @@ The api will simply return a json response containing the worker's code creation
 
 4.  Update the Cloudflare Pages `Build command` from the regular `hugo` command to now use the Makefile with the command `make cloudflare-deploy`
 
-5.  Add a CNAME to the DNS to allow the api e.g. `CNAME api-poc-dev shadowcryptic.com`
+5.  Add a CNAME to the DNS to allow the api e.g. `CNAME api-poc shadowcryptic.com`
 
 Deployment should now include/update this Cloudflare worker whenever the site is updated (the `time_build` field should be seen to update).
 
