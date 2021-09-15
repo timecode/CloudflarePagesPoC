@@ -179,7 +179,7 @@ This PoC is WIP, but here's what I have so far...
 
 5.  Marvel at the deployed site
 
-    - The deployed site gets a custom TLS certificate provided by Cloudflare 😎. (No wildcards!)
+    - The deployed site gets a TLS certificate provided by Cloudflare 😎.
     - Deployments can be rolled back (to any version) at any time.
     - Each deployment has its own unique subdomain, such as `https://331e1fb6.cloudflarepagespoc.pages.dev/` for example.
     - Access to Preview deployments can be control with Cloudflare Access.
@@ -197,3 +197,39 @@ Preview branches are classed as "all non-Production branches". Try one out...
 5.  Watch Cloudflare Pages pick up the branch and deploy a preview! The deployment gets its own subdomain, such as `https://df58e22a.cloudflarepagespoc.pages.dev/` for example, however it also gets a handy alias containing the branch name, such as `https://my-preview-version-1.cloudflarepagespoc.pages.dev`
 
 When you're ready to merge the branch to `main`, open a pull request, watch as the Cloudflare Pages build completes to allow your Merge, which will then trigger a Production build and deployment!
+
+## Adding a (custom, dynamically generated) Cloudflare Worker
+
+To show the build process can include more than just the static site generation, we'll add a Cloudflare Worker to act as a simple API. The worker will be dynamically generated as well, just "because we can".
+
+The api will simply return a json response containing the worker's code creation time (to satisfy the dynamic requirement updated at build time) as well as the current time whenever the api is called. The result will therefore be something like:
+
+```json
+{
+  "time_build": "2021-09-15T17:02:03Z",
+  "time_now": "The local time in GB is 6:24:40 PM"
+}
+```
+
+1.  Add environment variables `CF_` shown below:
+
+    | Variable name          | Value                   |
+    | ---------------------- | ----------------------- |
+    | `CF_WORKERS_API_TOKEN` | `<ADD API TOKEN HERE>`  |
+    | `CF_ACCOUNT_ID`        | `<ADD ACCOUNT ID HERE>` |
+    | `CF_ZONE_ID`           | `<ADD ZONE ID HERE>`    |
+    | `HUGO_VERSION`         | `0.88.1`                |
+    | `HUGO_ENVIRONMENT`     | `production`            |
+
+2.  Add the cloudflare worker deployment code as seen in the [repo](https://github.com/timecode/CloudflarePagesPoC/tree/main/gocode/).
+
+3.  Add code to hook in to the Hugo deployment as seen in the repo's [Makefile](https://github.com/timecode/CloudflarePagesPoC/tree/main/Makefile). Update the Cloudflare Pages `Build command` from the regular `hugo` command to now use the Makefile with the command `make cloudflare-deploy`
+
+4.  Add a CNAME to the DNS to allow the api e.g. `CNAME api-poc-dev shadowcryptic.com`
+
+Deployment should now include/update this Cloudflare worker whenever the site is updated (the `time_build` field should be seen to update).
+
+Clicking on the [api endpoint](https://api-poc-dev.shadowcryptic.com/time) should provide something like the above example. We could of course add a simple piece of JavaScript to a page that automatically calls the API on load and updates a page dynamically, but that's another story.
+
+Adding dynamic elements to the Hugo generated SSG is now fairly simple to develop and deploy using Cloudflare Pages.
+🥂 😎 🥂
