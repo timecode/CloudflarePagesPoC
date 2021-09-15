@@ -229,7 +229,7 @@ The api will simply return a json response containing the worker's code creation
 
 Deployment should now include/update this Cloudflare worker whenever the site is updated (the `time_build` field should be seen to update).
 
-Clicking on the [api endpoint](https://api-poc-dev.shadowcryptic.com/time) should provide something like the above example. We could of course add a simple piece of JavaScript to a page that automatically calls the API on load and updates a page dynamically, but that's another story.
+Clicking on the [api endpoint](https://api-poc.shadowcryptic.com/time) should provide something like the above example. We could of course add a simple piece of JavaScript to a page that automatically calls the API on load and updates a page dynamically, but that's another story.
 
 Adding dynamic elements to the Hugo generated SSG is now fairly simple to develop and deploy using Cloudflare Pages.
 🥂 😎 🥂
