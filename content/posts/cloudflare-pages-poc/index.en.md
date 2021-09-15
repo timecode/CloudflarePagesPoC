@@ -223,13 +223,16 @@ The api will simply return a json response containing the worker's code creation
 
 2.  Add the cloudflare worker deployment code as seen in the [repo](https://github.com/timecode/CloudflarePagesPoC/tree/main/gocode/).
 
-3.  Add code to hook in to the Hugo deployment as seen in the repo's [Makefile](https://github.com/timecode/CloudflarePagesPoC/tree/main/Makefile). Update the Cloudflare Pages `Build command` from the regular `hugo` command to now use the Makefile with the command `make cloudflare-deploy`
+3.  Add code to hook in to the Hugo deployment as seen in the repo's [Makefile](https://github.com/timecode/CloudflarePagesPoC/tree/main/Makefile). Of course, there are other methods that could be employed to do this kind of thing too, such as GitHub Workflows.
 
-4.  Add a CNAME to the DNS to allow the api e.g. `CNAME api-poc-dev shadowcryptic.com`
+4.  Update the Cloudflare Pages `Build command` from the regular `hugo` command to now use the Makefile with the command `make cloudflare-deploy`
+
+5.  Add a CNAME to the DNS to allow the api e.g. `CNAME api-poc-dev shadowcryptic.com`
 
 Deployment should now include/update this Cloudflare worker whenever the site is updated (the `time_build` field should be seen to update).
 
 Clicking on the [api endpoint](https://api-poc.shadowcryptic.com/time) should provide something like the above example. We could of course add a simple piece of JavaScript to a page that automatically calls the API on load and updates a page dynamically, but that's another story.
 
 Adding dynamic elements to the Hugo generated SSG is now fairly simple to develop and deploy using Cloudflare Pages.
+
 🥂 😎 🥂
