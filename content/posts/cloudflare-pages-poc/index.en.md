@@ -2,7 +2,7 @@
 weight: 1
 title: "Cloudflare Pages PoC"
 date: 2021-09-15T09:45:40+01:00
-description: This article describes my Cloudflare Pages PoC.
+description: This article describes my Cloudflare Pages PoC Journey.
 toc:
   enable: false
 resources:
@@ -16,11 +16,11 @@ tags:
 categories:
   - Cloudflare
 ---
-This article describes my Cloudflare Pages PoC.
+This article describes my Cloudflare Pages PoC Journey.
 <!--more-->
 
 {{< admonition >}}
-This PoC is WIP, but here's what I have so far...
+This PoC is an ongoing WIP, but here's what I have so far...
 {{< /admonition >}}
 
 ## Basic Production Site
@@ -29,13 +29,13 @@ This PoC is WIP, but here's what I have so far...
 
     Follow Cloudflare's [Deploy a Hugo site docs](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hugo-site).
 
-    I'm going to be using the [CodeIT](https://github.com/sunt-programator/CodeIT.git) theme, so I'm using that where the docs use `themes/terminal`. Similarly, my config is set up as seen in [my repo](https://github.com/timecode/CloudflarePagesPoC).
+    I'm going to be using the [CodeIT](https://github.com/sunt-programator/CodeIT.git) theme, so I'm using that where the docs use `themes/terminal`. Similarly, my config is set up as seen in [my repo](https://github.com/timecode/CloudflarePagesPoC/tree/main/config/).
 
 2.  Set a custom DNS entry
 
-    Set a Custom Domain to allow easier naivigation to your site (set at Cloudflare's hosted DNS, for example) such as `https://poc.shadowcryptic.com` (set subdomain `poc` entry `CNAME` to `cloudflarepagespoc.pages.dev`)
+    Set a Custom Domain to allow easier navigation to your site. This appears to be able to be set in the Project's "Custom domains" setting. if you look at your DNS settings afterwards you'll see something like subdomain `poc` as a `CNAME` to `cloudflarepagespoc.pages.dev`.
 
-3.  Build settings
+3.  Initial build settings
 
     -   Build command: `hugo`
     -   Build output directory: `/public`
@@ -47,9 +47,9 @@ This PoC is WIP, but here's what I have so far...
     Default versions for build dependencies may well be quite old.
     {{< /admonition >}}
 
-    There are separate environment variables for `Production` and `Preview` builds, so always try out new versions in a Preview build before upgrading the Production ENV.
+    There are separate environment variables for `Production` and `Preview` builds, so always try out new versions in a Preview build (see below) before upgrading the Production ENV.
 
-    Either way, environment variables should be set to match your development environment.
+    Either way, environment variables should be set to match your local development environment where possible.
 
     Go to your Pages Project page > Settings > Environment Variables
 
@@ -61,13 +61,13 @@ This PoC is WIP, but here's what I have so far...
     | `HUGO_VERSION`     | `0.88.1`     |
     | `HUGO_ENVIRONMENT` | `production` |
 
-    **Note**: `HUGO_ENVIRONMENT` is used by Hugo as a selector for its configuration. This repo's config directory, for example, has two such options 'production' and 'development'
+    **Note**: `HUGO_ENVIRONMENT` is used by Hugo as a selector for its configuration and can also be picked up by any additional code you may use. This repo's config directory, for example, has two such options 'production' and 'development'
 
 4.  Deploy
 
     Deployment is simply a matter of pushing your local commits to the repo. The default branch for production builds is `main` so commit or merge to that and Cloudflare should initiate a build and deploy to your production site!
 
-    The build can we followed by clicking on `View Build` and following the Build log, for example:
+    The build can be followed by clicking on `View Build` and following the Build log, for example:
 
     ```txt
     13:12:51.819 Initializing build environment. This may take up to a few minutes to complete
@@ -177,32 +177,34 @@ This PoC is WIP, but here's what I have so far...
     13:15:53.603 Success: Your site was deployed!
     ```
 
-5.  Marvel at the deployed site
+    Yay! 🎉
 
-    - The deployed site gets a TLS certificate provided by Cloudflare 😎.
+5.  Now, marvel at the deployed site!
+
+    - The deployed site has a TLS certificate provided by Cloudflare 😎.
     - Deployments can be rolled back (to any version) at any time.
-    - Each deployment has its own unique subdomain, such as `https://331e1fb6.cloudflarepagespoc.pages.dev/` for example.
-    - Access to Preview deployments can be control with Cloudflare Access.
+    - Each deployment has its own unique subdomain, such as `https://331e1fb6.cloudflarepagespoc.pages.dev/` for example, should that be of use.
+    - Access to Preview deployments can be controlled with Cloudflare Access.
     - Web Analytics can be enabled at Cloudflare.
     - Check your site's score on Google's [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)... for example, [here's this site](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fpoc.shadowcryptic.com%2F&tab=desktop)
 
 ## Preview Site
 
-Preview branches are classed as "all non-Production branches". Try one out...
+Preview branches are classified as "all non-Production branches" i.e. any branch that isn't `main`. Try one out...
 
 1.  Create a branch... `git checkout -b my-preview-version-1`
-2.  Make you changes
+2.  Make some changes
 3.  Commit your changes (repeat the previous step for more changes, or continue)
-4.  Push to the repo `git push origin`
-5.  Watch Cloudflare Pages pick up the branch and deploy a preview! The deployment gets its own subdomain, such as `https://df58e22a.cloudflarepagespoc.pages.dev/` for example, however it also gets a handy alias containing the branch name, such as `https://my-preview-version-1.cloudflarepagespoc.pages.dev`
+4.  Push to the repo... `git push origin`
+5.  Watch Cloudflare Pages pick up the branch/changes and deploy a preview! The deployment again gets its own subdomain, such as `https://df58e22a.cloudflarepagespoc.pages.dev/` for example, however it also gets a handy alias containing the branch name, such as `https://my-preview-version-1.cloudflarepagespoc.pages.dev`
 
-When you're ready to merge the branch to `main`, open a pull request, watch as the Cloudflare Pages build completes to allow your Merge, which will then trigger a Production build and deployment!
+When you're ready to merge the branch to `main`, open a pull request, watch as the Cloudflare Pages build completes to allow your Merge. Once merged a Production build and deployment will be trigger by default.
 
 ## Adding a (custom, dynamically generated) Cloudflare Worker
 
 To show the build process can include more than just the static site generation, we'll add a Cloudflare Worker to act as a simple API. The worker will be dynamically generated as well, just "because we can".
 
-The api will simply return a json response containing the worker's code creation time (to satisfy the dynamic requirement updated at build time) as well as the current time whenever the api is called. The result will therefore be something like:
+The api will simply return a json response containing the worker's code creation time, which will be updated each time there's a deployment, as well as the current time whenever the api is called. The result will therefore be something like:
 
 ```json
 {
@@ -223,15 +225,15 @@ The api will simply return a json response containing the worker's code creation
 
 2.  Add the cloudflare worker deployment code as seen in the [repo](https://github.com/timecode/CloudflarePagesPoC/tree/main/gocode/).
 
-3.  Add code to hook in to the Hugo deployment as seen in the repo's [Makefile](https://github.com/timecode/CloudflarePagesPoC/tree/main/Makefile). Of course, there are other methods that could be employed to do this kind of thing too, such as GitHub Workflows.
+3.  Add code to hook in to the Hugo deployment as seen in the repo's [Makefile](https://github.com/timecode/CloudflarePagesPoC/tree/main/Makefile). Of course, there are other methods that could be employed to do this kind of thing too, such as GitHub Workflows, but this way allows the scope of this PoC to be contained. The Makefile allows other helper commands too, btw.
 
 4.  Update the Cloudflare Pages `Build command` from the regular `hugo` command to now use the Makefile with the command `make cloudflare-deploy`
 
-5.  Add a CNAME to the DNS to allow the api e.g. `CNAME api-poc shadowcryptic.com`
+5.  Add a CNAME to your DNS to allow the api to be reached e.g. `CNAME api-poc shadowcryptic.com`
 
-Deployment should now include/update this Cloudflare worker whenever the site is updated (the `time_build` field should be seen to update).
+Deployment should now include/update this Cloudflare worker whenever the site is updated/deployed (the `time_build` field should be seen to update).
 
-Clicking on the [api endpoint](https://api-poc.shadowcryptic.com/time) should provide something like the above example. We could of course add a simple piece of JavaScript to a page that automatically calls the API on load and updates a page dynamically, but that's another story.
+Clicking on the [api endpoint](https://api-poc.shadowcryptic.com/time) should provide something like the above example. We could of course add a simple piece of JavaScript to a page that automatically calls the API upon load and updates a page dynamically, but that's another story.
 
 Adding dynamic elements to the Hugo generated SSG is now fairly simple to develop and deploy using Cloudflare Pages.
 
