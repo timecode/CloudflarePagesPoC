@@ -51,7 +51,7 @@ The site currently uses a base theme, which is included as a gitsubmodule.
 
         ```sh
         # yarn remove prettier
-        yarn add --dev --exact prettier@2.4.0
+        yarn add --dev --exact prettier@2.6.0
 
         # additional plugin for go-template
         # yarn remove prettier-plugin-go-template
