@@ -37,7 +37,7 @@ serve :
 	@ hugo server \
 		--gc \
 		--navigateToChanged \
-		--print-mem \
+		--printMemoryUsage \
 		--cleanDestinationDir \
 		--buildDrafts \
 		--minify \
